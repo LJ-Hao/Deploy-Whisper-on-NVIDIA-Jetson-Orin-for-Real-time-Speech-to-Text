@@ -1,0 +1,8 @@
+pyaudio
+SpeechRecognition
+numpy
+Flask
+openai-whisper
+threading
+https://developer.download.nvidia.cn/compute/redist/jp/v511/pytorch/torch-2.0.0+nv23.05-cp38-cp38-linux_aarch64.whl
+git+https://github.com/openai/whisper.git 
