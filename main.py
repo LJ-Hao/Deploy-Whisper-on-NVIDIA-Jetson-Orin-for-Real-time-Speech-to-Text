@@ -89,19 +89,7 @@ def audio():
                 if 'Okay. Okay. Okay' in text:
                     continue
 
-                # if phrase_complete:
-                #     transcription.append(text)
-                # else:
-                #     transcription[-1] = text
-                
-                # if  transcription[-1] != "":
-                    # # Clear the console to reprint the updated transcription.
-                    # os.system('cls' if os.name=='nt' else 'clear')
-                    # for line in transcription:
                 socketio.emit('transcription', text) 
-                    # Flush stdout.
-                    # print('', end='', flush=True)
-                # socketio.emit('transcription', text+'\n') 
 
         except KeyboardInterrupt:
             break
