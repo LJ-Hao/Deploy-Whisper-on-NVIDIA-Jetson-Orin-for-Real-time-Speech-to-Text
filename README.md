@@ -7,6 +7,8 @@ This is a demo of real time speech to text with OpenAI's Whisper model. It works
 - [reSpeaker](https://www.seeedstudio.com/ReSpeaker-Mic-Array-v2-0.html?queryID=2baffb980bdb6d5e65b2b3f511657cb2&objectID=139&indexName=bazaar_retailer_products) (Or other USB interface microphones)
 - Monitor, mouse, and keyboard 
 
+![hardware_connection](./source/Picture%20of%20Connection.jpg)
+
 ## To install dependencies simply run
 ```shell
 git clone https://github.com/LJ-Hao/Deploy-Whisper-on-NVIDIA-Jetson-Orin-for-Real-time-Speech-to-Text.git

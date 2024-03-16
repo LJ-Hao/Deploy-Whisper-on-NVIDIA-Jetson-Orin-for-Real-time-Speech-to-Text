@@ -2,6 +2,7 @@
 import numpy as np
 import speech_recognition as sr
 import whisper
+import re
 
 from datetime import datetime, timedelta
 from queue import Queue
@@ -20,14 +21,14 @@ def audio():
     data_queue = Queue()
     # We use SpeechRecognizer to record our audio because it has a nice feature where it can detect when speech ends.
     recorder = sr.Recognizer()
-    recorder.energy_threshold = 100
+    recorder.energy_threshold = 1000
     # Definitely do this, dynamic energy compensation lowers the energy threshold dramatically to a point where the SpeechRecognizer never stops recording.
     recorder.dynamic_energy_threshold = False
 
     source = sr.Microphone(sample_rate=16000)
 
     # load model
-    audio_model = whisper.load_model("base")    
+    audio_model = whisper.load_model("base.en")    
 
     record_timeout = 2
     phrase_timeout = 3
@@ -55,7 +56,7 @@ def audio():
 
     while True:
         try:
-            now = datetime.now()
+            now = datetime.utcnow()
             # Pull raw recorded audio from the queue.
             if not data_queue.empty():
                 phrase_complete = False
@@ -78,32 +79,33 @@ def audio():
                 # Read the transcription.
                 result = audio_model.transcribe(audio_np, fp16=False, temperature=0.0)
                 text = result['text'].strip()
+
                 if '!!!!!' in text:
                     continue
-                # # If we detected a pause between recordings, add a new item to our transcription.
-                # # Otherwise edit the existing one.
-                if phrase_complete:
-                    transcription.append(text)
-                else:
-                    transcription[-1] = text
+                if 'a little bit of a little bit of'in text:
+                    continue
+                if 'I\'m sorry.I\'m sorry.I\'m sorry.' in text:
+                    continue
+                if 'Okay. Okay. Okay' in text:
+                    continue
+
+                # if phrase_complete:
+                #     transcription.append(text)
+                # else:
+                #     transcription[-1] = text
                 
-                if  transcription[-1] != "":
+                # if  transcription[-1] != "":
                     # # Clear the console to reprint the updated transcription.
                     # os.system('cls' if os.name=='nt' else 'clear')
                     # for line in transcription:
-                    socketio.emit('transcription', transcription[-1]+'\n') 
+                socketio.emit('transcription', text) 
                     # Flush stdout.
                     # print('', end='', flush=True)
-                else:
-                    pass
-                # Infinite loops are bad for processors, must sleep.
-                # sleep(0.25)
+                # socketio.emit('transcription', text+'\n') 
+
         except KeyboardInterrupt:
             break
 
-    # print("\n\nTranscription:")
-    # for line in transcription:
-    #     print(line)
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -112,4 +114,4 @@ if __name__ == "__main__":
     thread = threading.Thread(target=audio)
     thread.daemon = True
     thread.start()
-    socketio.run(app)
+    socketio.run(app, debug=True)
