@@ -33,7 +33,7 @@ python main.py
 ```
 ## Result
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KR0GYqUuo5Y?si=gJXH7WRskpMtT80J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Alt text](https://img.youtube.com/vi/KR0GYqUuo5Y/0.jpg)](https://www.youtube.com/watch?v=KR0GYqUuo5Y)
 
 For more information on Whisper please see https://github.com/openai/whisper
 
