@@ -32,6 +32,8 @@ nvidia@nvidia-desktop:~$ arecord -D hw:2,0 --dump-hw-params
 python main.py
 ```
 ## Result
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KR0GYqUuo5Y?si=gJXH7WRskpMtT80J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 For more information on Whisper please see https://github.com/openai/whisper
 
