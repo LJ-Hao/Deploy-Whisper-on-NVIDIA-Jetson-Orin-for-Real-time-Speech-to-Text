@@ -13,7 +13,8 @@ This is a demo of real time speech to text with OpenAI's Whisper model. It works
 ```shell
 git clone https://github.com/LJ-Hao/Deploy-Whisper-on-NVIDIA-Jetson-Orin-for-Real-time-Speech-to-Text.git
 cd Deploy-Whisper-on-NVIDIA-Jetson-Orin-for-Real-time-Speech-to-Text
-pip install -r requirements.txt
+sudo apt install python3-pyaudio
+pip3 install -r requirements.txt
 sudo apt update && sudo apt install ffmpeg
 ```
 And you can use following command to check wheather the dependencies install successfully.
@@ -29,7 +30,7 @@ nvidia@nvidia-desktop:~$ arecord -D hw:2,0 --dump-hw-params
 ```
 ## Run this command to start the demo
 ```shell
-python main.py
+python3 main.py
 ```
 ## Result
 
