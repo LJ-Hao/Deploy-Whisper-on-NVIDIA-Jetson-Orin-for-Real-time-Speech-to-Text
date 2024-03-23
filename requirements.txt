@@ -3,3 +3,4 @@ numpy
 Flask
 openai-whisper
 thread6
+flask_socketio
