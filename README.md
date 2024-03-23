@@ -26,7 +26,7 @@ If you can see the following result, it means that the dependencies are installe
 
 ## Run this command to set the microphone rate
 ```shell
-nvidia@nvidia-desktop:~$ arecord -D hw:2,0 --dump-hw-params
+arecord -D hw:2,0 --dump-hw-params
 ```
 ## Run this command to start the demo
 ```shell
